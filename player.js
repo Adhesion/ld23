@@ -16,7 +16,7 @@ var Player = me.ObjectEntity.extend(
         this.gravity = 0.5;
         this.setFriction( 0.2, 0.2 );
         
-        this.updateColRect( 24, 96, -1 );
+        this.updateColRect( 36, 72, -1 );
         
         this.lastWalkLeft = false;
         this.curWalkLeft = false;
@@ -101,6 +101,7 @@ var Player = me.ObjectEntity.extend(
         }
         this.lastWalkLeft = this.curWalkLeft;
         
+        // do damage only once every few frames
         if ( this.hpCounter == 0 )
         {
             this.hit( this.attachedList.length );
@@ -111,7 +112,8 @@ var Player = me.ObjectEntity.extend(
             this.hpCounter--;
         }
         
-        if ( this.hp <= 0 )
+        // die if no hp or fall off screen - note may cause issues with long jumps? bit of a hack
+        if ( this.hp <= 0 || this.pos.y > me.game.viewport.bottom )
         {
             this.die();
         }
