@@ -20,6 +20,11 @@ var Enemy = me.ObjectEntity.extend(
         this.collidable = true;
         this.type = me.game.ENEMY_OBJECT;
         
+        this.addAnimation( "idle", [0] );
+        this.addAnimation( "jump", [1] );
+        this.addAnimation( "grab", [2] );
+        this.addAnimation( "run", [3, 4, 5, 6] );
+        
         this.isAttached = false;
         this.attachMax = 100;
         this.attachCounter = this.attachMax;
@@ -63,6 +68,7 @@ var Enemy = me.ObjectEntity.extend(
 
         if ( this.isAttached )
         {
+            this.setCurrentAnimation( "grab" );
             this.pos.x = me.game.player.pos.x - this.posDiffX;
             this.pos.y = me.game.player.pos.y - this.posDiffY;
             this.vel.x = 0;
@@ -81,10 +87,11 @@ var Enemy = me.ObjectEntity.extend(
         }
         else
         {
+            this.setCurrentAnimation( "run" );
             this.doWalk( me.game.player.pos.x < this.pos.x );
             
             // add random jump if "close"
-            if ( Math.abs( me.game.player.pos.x - this.pos.x ) < 60 && Math.random() > 0.98 )
+            if ( Math.abs( me.game.player.pos.x - this.pos.x ) < 60 && Math.random() > 0.95 )
             {
                 this.doJump();
             }
@@ -99,6 +106,11 @@ var Enemy = me.ObjectEntity.extend(
             {
                 this.collidable = true;
             }
+        }
+        
+        if ( ( this.falling || this.jumping ) && !this.attached )
+        {
+            this.setCurrentAnimation( "jump" );
         }
         
         var res = this.updateMovement();
