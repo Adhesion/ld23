@@ -31,6 +31,10 @@ var Player = me.ObjectEntity.extend(
         this.hpCounter = 0;
         this.hpCounterMax = 30;
         
+        this.addAnimation( "idle", [0] );
+        this.addAnimation( "jump", [1] );
+        this.addAnimation( "run", [2, 3, 4, 5] );
+        
         me.game.viewport.follow( this.pos, me.game.viewport.AXIS.BOTH );
         
         me.input.bindKey( me.input.KEY.LEFT, "left" );
@@ -78,7 +82,7 @@ var Player = me.ObjectEntity.extend(
     },
     
     update: function()
-    {
+    {      
         if ( me.input.isKeyPressed( "left" ) )
         {
             this.doWalk( true );
@@ -116,6 +120,19 @@ var Player = me.ObjectEntity.extend(
         if ( this.hp <= 0 || this.pos.y > me.game.viewport.bottom )
         {
             this.die();
+        }
+        
+        if ( this.jumping || this.falling )
+        {
+            this.setCurrentAnimation( "jump" );
+        }
+        else if ( me.input.isKeyPressed( "left" ) || me.input.isKeyPressed( "right" ) )
+        {
+            this.setCurrentAnimation( "run" );
+        }
+        else
+        {
+            this.setCurrentAnimation( "idle" );
         }
         
         this.updateMovement();
