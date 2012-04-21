@@ -15,12 +15,15 @@ var Enemy = me.ObjectEntity.extend(
         this.setVelocity( 2.5, 7.0 );
         this.gravity = 0.5;
         
+        this.updateColRect( 8, 32, -1 );
+        
         this.collidable = true;
         this.type = me.game.ENEMY_OBJECT;
         
         this.isAttached = false;
-        this.attachMax = 30;
+        this.attachMax = 100;
         this.attachCounter = this.attachMax;
+        this.attachRate = 2;
         this.posDiffX = 0;
         this.posDiffY = 0;
     },
@@ -39,6 +42,7 @@ var Enemy = me.ObjectEntity.extend(
             this.posDiffX = me.game.player.pos.x - this.pos.x;
             this.posDiffY = me.game.player.pos.y - this.pos.y;
             this.collidable = false;
+            me.game.player.addAttached( this );
         }
     },
 
@@ -48,13 +52,14 @@ var Enemy = me.ObjectEntity.extend(
         {
             return false;
         }
-
-        var res = this.updateMovement();
+        
 
         if ( this.isAttached )
         {
             this.pos.x = me.game.player.pos.x - this.posDiffX;
             this.pos.y = me.game.player.pos.y - this.posDiffY;
+            this.vel.x = 0;
+            this.vel.y = 0;
             
             if ( this.attachCounter > 0 )
             {
@@ -63,6 +68,7 @@ var Enemy = me.ObjectEntity.extend(
             else
             {
                 this.isAttached = false;
+                this.flicker( this.attachMax / this.attachRate );
             }
         }
         else
@@ -78,13 +84,16 @@ var Enemy = me.ObjectEntity.extend(
             // add a delay after deattach wherein the enemy can't collide with player
             if ( this.attachCounter < this.attachMax )
             {
-                this.attachCounter += 3;
+                this.attachCounter += this.attachRate;
+                this.vel.x = -5.0;
             }
             else
             {
                 this.collidable = true;
             }
         }
+        
+        var res = this.updateMovement();
         
         if ( this.vel.x != 0 || this.vel.y != 0 )
         {

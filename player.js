@@ -16,7 +16,16 @@ var Player = me.ObjectEntity.extend(
         this.gravity = 0.5;
         this.setFriction( 0.2, 0.2 );
         
+        this.updateColRect( 24, 96, -1 );
+        
+        this.lastWalkLeft = false;
+        this.curWalkLeft = false;
+        
+        this.attachedList = new Array();
+        
         this.collidable = true;
+        
+        this.hp = 100;
         
         me.game.viewport.follow( this.pos, me.game.viewport.AXIS.BOTH );
         
@@ -28,21 +37,48 @@ var Player = me.ObjectEntity.extend(
         me.game.player = this;
     },
     
+    die: function()
+    {
+        alert( "dead" );
+    },
+    
+    addAttached: function( enemy )
+    {
+        this.attachedList[ this.attachedList.length ] = enemy;
+    },
+    
+    shakeOff: function()
+    {
+        for ( enemy in this.attachedList )
+        {
+            enemy.attachedCounter--;
+        }
+    },
+    
     update: function()
     {
         if ( me.input.isKeyPressed( "left" ) )
         {
             this.doWalk( true );
+            this.curWalkLeft = true;
         }
         else if ( me.input.isKeyPressed( "right" ) )
         {
             this.doWalk( false );
+            this.curWalkLeft = false;
         }
         
         if ( me.input.isKeyPressed( "jump" ) )
         {
             this.doJump();
         }
+        
+        if ( this.curWalkLeft != this.lastWalkLeft || me.input.isKeyPressed( "jump" ) )
+        {
+            //alert( "flip" );
+            this.shakeOff();
+        }
+        this.lastWalkLeft = this.curWalkLeft;
         
         this.updateMovement();
         var res = me.game.collide( this );
