@@ -28,21 +28,29 @@ var Enemy = me.ObjectEntity.extend(
         this.posDiffY = 0;
     },
     
+    decrementAttachCounter: function( amt )
+    {
+        this.attachCounter -= amt;
+    },
+    
     onCollision: function( res, obj )
     {
-        if ( res.y > 0 )
+        if ( obj == me.game.player )
         {
-            // kill enemies on stomp? may change later
-            this.alive = false;
-            me.game.remove( this );
-        }
-        else
-        {
-            this.isAttached = true;
-            this.posDiffX = me.game.player.pos.x - this.pos.x;
-            this.posDiffY = me.game.player.pos.y - this.pos.y;
-            this.collidable = false;
-            me.game.player.addAttached( this );
+            if ( res.y > 0 )
+            {
+                // kill enemies on stomp? may change later
+                this.alive = false;
+                me.game.remove( this );
+            }
+            else
+            {
+                this.isAttached = true;
+                this.posDiffX = me.game.player.pos.x - this.pos.x;
+                this.posDiffY = me.game.player.pos.y - this.pos.y;
+                this.collidable = false;
+                me.game.player.addAttached( this );
+            }
         }
     },
 
@@ -52,7 +60,6 @@ var Enemy = me.ObjectEntity.extend(
         {
             return false;
         }
-        
 
         if ( this.isAttached )
         {
@@ -68,6 +75,7 @@ var Enemy = me.ObjectEntity.extend(
             else
             {
                 this.isAttached = false;
+                me.game.player.removeAttached( this.GUID );
                 this.flicker( this.attachMax / this.attachRate );
             }
         }

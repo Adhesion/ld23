@@ -44,6 +44,12 @@ var PlayScreen = me.ScreenObject.extend(
     {
         // stuff to reset on state change
         me.levelDirector.loadLevel("level0");
+        
+        me.game.addHUD( 320, 0, 320, 100 );
+        me.game.HUD.addItem( "hp", new HPDisplay( 320, 0 ) );
+        me.game.HUD.setItemValue( "hp", me.game.player.hp );
+        
+        me.game.sort();
     },
 
     onDestroyEvent: function()

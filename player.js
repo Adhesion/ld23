@@ -25,7 +25,11 @@ var Player = me.ObjectEntity.extend(
         
         this.collidable = true;
         
+        this.lastCamX = me.game.viewport.pos.x;
+        
         this.hp = 100;
+        this.hpCounter = 0;
+        this.hpCounterMax = 30;
         
         me.game.viewport.follow( this.pos, me.game.viewport.AXIS.BOTH );
         
@@ -39,7 +43,7 @@ var Player = me.ObjectEntity.extend(
     
     die: function()
     {
-        alert( "dead" );
+        me.levelDirector.loadLevel( me.levelDirector.getCurrentLevelId() );
     },
     
     addAttached: function( enemy )
@@ -47,12 +51,30 @@ var Player = me.ObjectEntity.extend(
         this.attachedList[ this.attachedList.length ] = enemy;
     },
     
+    removeAttached: function( enemyID )
+    {
+        for ( var i = 0; i < this.attachedList.length; i++ )
+        {
+            if ( this.attachedList[i].GUID == enemyID )
+            {
+                this.attachedList.splice( i, 1 );
+                return;
+            }
+        }
+    },
+    
     shakeOff: function()
     {
-        for ( enemy in this.attachedList )
+        for ( var i = 0; i < this.attachedList.length; i++ )
         {
-            enemy.attachedCounter--;
+            this.attachedList[i].decrementAttachCounter( 30 );
         }
+    },
+    
+    hit: function( dmg )
+    {
+        this.hp -= dmg;
+        me.game.HUD.setItemValue( "hp", this.hp );
     },
     
     update: function()
@@ -75,13 +97,33 @@ var Player = me.ObjectEntity.extend(
         
         if ( this.curWalkLeft != this.lastWalkLeft || me.input.isKeyPressed( "jump" ) )
         {
-            //alert( "flip" );
             this.shakeOff();
         }
         this.lastWalkLeft = this.curWalkLeft;
         
+        if ( this.hpCounter == 0 )
+        {
+            this.hit( this.attachedList.length );
+            this.hpCounter = this.hpCounterMax;
+        }
+        else
+        {
+            this.hpCounter--;
+        }
+        
+        if ( this.hp <= 0 )
+        {
+            this.die();
+        }
+        
         this.updateMovement();
         var res = me.game.collide( this );
+        
+        /*if ( me.game.viewport.pos.x < this.lastCamX )
+        {
+            me.game.viewport.move( this.lastCamX, me.game.viewport.pos.y );
+        }
+        this.lastCamX = me.game.viewport.pos.x;*/
         
         if ( this.vel.x != 0 || this.vel.y != 0 )
         {
