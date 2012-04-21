@@ -44,7 +44,8 @@ var Player = me.ObjectEntity.extend(
             this.doJump();
         }
         
-        var res = this.updateMovement();
+        this.updateMovement();
+        var res = me.game.collide( this );
         
         if ( this.vel.x != 0 || this.vel.y != 0 )
         {
