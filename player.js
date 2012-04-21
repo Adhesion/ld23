@@ -101,6 +101,7 @@ var Player = me.ObjectEntity.extend(
         }
         this.lastWalkLeft = this.curWalkLeft;
         
+        // do damage only once every few frames
         if ( this.hpCounter == 0 )
         {
             this.hit( this.attachedList.length );
