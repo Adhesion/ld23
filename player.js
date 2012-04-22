@@ -38,8 +38,11 @@ var Player = me.ObjectEntity.extend(
         this.curFlame = null;
         this.curLaser = null;
         
-        me.game.viewport.follow( this.pos, me.game.viewport.AXIS.BOTH );
-        
+        this.followPos = new me.Vector2d( this.pos.x, this.pos.y + 32 );
+
+        me.game.viewport.follow( this.followPos, me.game.viewport.AXIS.BOTH );
+        me.game.viewport.setDeadzone( me.game.viewport.width / 10, 1 );
+
         me.input.bindKey( me.input.KEY.LEFT, "left" );
         me.input.bindKey( me.input.KEY.RIGHT, "right" );
         me.input.bindKey( me.input.KEY.X, "jump", true );
@@ -163,6 +166,9 @@ var Player = me.ObjectEntity.extend(
         
         }
         
+        this.followPos.x = this.pos.x;
+        this.followPos.y = this.pos.y + 32;
+
         // broken method to restrict left cam movement
         /*if ( me.game.viewport.pos.x < this.lastCamX )
         {
