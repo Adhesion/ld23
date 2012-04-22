@@ -117,7 +117,7 @@ var Player = me.ObjectEntity.extend(
             me.game.add( this.curLazer, 5 );
             me.game.sort();
             this.lazerCooldown = this.lazerMax;
-            //me.game.viewport.shake( 8, 15, me.game.viewport.AXIS.BOTH );
+            me.game.viewport.shake( 8, 15, me.game.viewport.AXIS.BOTH );
         }
         else if ( this.lazerCooldown > 0 )
         {
