@@ -31,12 +31,15 @@ var Player = me.ObjectEntity.extend(
         this.hpCounter = 0;
         this.hpCounterMax = 30;
         
+        this.lazerCooldown = 0;
+        this.lazerMax = 100;
+        
         this.addAnimation( "idle", [ 0 ] );
         this.addAnimation( "jump", [ 1 ] );
         this.addAnimation( "run", [ 2, 3, 4, 5 ] );
         
         this.curFlame = null;
-        this.curLaser = null;
+        this.curLazer = null;
         
         this.followPos = new me.Vector2d( this.pos.x, this.pos.y + 80 );
 
@@ -108,10 +111,18 @@ var Player = me.ObjectEntity.extend(
             me.game.sort();
         }
         
-        if (me.input.isKeyPressed( "shoot" ) )
+        if ( me.input.isKeyPressed( "shoot" ) && this.lazerCooldown == 0 )
         {
-            
+            this.curLazer = new playerParticle( this.pos.x, this.pos.y, "lazer", 384, [ 0, 1, 2, 3, 4 ], 4, this.curWalkLeft, "lazer" );
+            me.game.add( this.curLazer, 5 );
+            me.game.sort();
+            this.lazerCooldown = this.lazerMax;
         }
+        else if ( this.lazerCooldown > 0 )
+        {
+            this.lazerCooldown--;
+        }
+        
         
         if ( this.curWalkLeft != this.lastWalkLeft || me.input.isKeyPressed( "jump" ) )
         {
@@ -170,9 +181,22 @@ var Player = me.ObjectEntity.extend(
                 this.curFlame.flipX( this.curWalkLeft );
             }
         }
-        if ( this.curLaser )
+        if ( this.curLazer )
         {
-        
+            if ( this.curWalkLeft )
+            {
+                this.curLazer.pos.x = this.pos.x - 270;
+            }
+            else
+            {
+                this.curLazer.pos.x = this.pos.x + 30;
+            }
+            this.curLazer.pos.y = this.pos.y + 16;
+            
+            if ( this.lastWalkLeft != this.curWalkLeft )
+            {
+                this.curLazer.flipX( this.curWalkLeft );
+            }
         }
         this.lastWalkLeft = this.curWalkLeft;
         
@@ -201,7 +225,7 @@ var playerParticle = me.ObjectEntity.extend(
     {
         var settings = new Object();
         settings.image = sprite;
-        settings.spritewidth = 48;
+        settings.spritewidth = spritewidth;
         
         this.parent( x, y, settings );
         

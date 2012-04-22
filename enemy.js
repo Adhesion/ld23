@@ -100,7 +100,7 @@ var Enemy = me.ObjectEntity.extend(
                 this.spawnParticle( this.pos.x, this.pos.y - 48, "heart", 48, [ 0, 1, 2, 3, 4, 5, 6 ], 4 );
             }
         }
-        else if ( obj.type == "flame" || obj.type == "laser" )
+        else if ( obj.type == "flame" || obj.type == "lazer" )
         {
             this.die();
             this.spawnParticle( this.pos.x, this.pos.y, "burned", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ], 4 );
