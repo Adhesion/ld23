@@ -116,6 +116,13 @@
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
+  <object name="LevelChanger" x="1240" y="54" width="202" height="181">
+   <properties>
+    <property name="duration" value="250"/>
+    <property name="fade" value="#000000"/>
+    <property name="to" value="level1"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="collision" width="100" height="15">
   <data encoding="base64">

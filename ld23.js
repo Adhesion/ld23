@@ -39,18 +39,36 @@ var jsApp =
     }
 }
 
+var LevelChanger = me.LevelEntity.extend({
+    init: function( x, y, settings ) {
+        console.log("Level changer");
+        this.parent( x, y, settings );
+    },
+    goTo: function ( level ) {
+        this.parent( level );
+        me.state.current().changeLevel( this.gotolevel );
+    }
+});
+
 var PlayScreen = me.ScreenObject.extend(
 {
 
     init: function () {
+        me.entityPool.add("LevelChanger", LevelChanger);
         this.levelDisplay = new LevelDisplay();
-        this.setLevel( 0 );
     },
 
-    setLevel: function( l ) {
-        this.levelName = "level" + l;
-        this.currentLevel = l;
-        this.levelDisplay.set( l );
+
+    changeLevel: function( l ) {
+        this.levelDisplay.reset();
+    },
+
+    getLevel: function() {
+        var level = me.levelDirector.getCurrentLevelId();
+        var re = /level(\d+)/;
+        var results = re.exec(level);
+        console.log( results );
+        return results[1];
     },
 
     onResetEvent: function()
@@ -59,13 +77,13 @@ var PlayScreen = me.ScreenObject.extend(
         me.game.addHUD( 0, 0, me.video.getWidth(), me.video.getHeight() );
         me.game.HUD.addItem( "hp", new HPDisplay( 620, 0 ) );
         me.game.HUD.addItem( "levelTitle", this.levelDisplay );
-//        me.game.HUD.setItemValue( "hp", me.game.player.hp );
         this.restartLevel();
     },
 
     restartLevel: function() {
         this.levelDisplay.reset();
-        me.levelDirector.loadLevel( this.levelName );
+        var level = me.levelDirector.getCurrentLevelId();
+        me.levelDirector.loadLevel( level );
         me.game.sort();
     },
 
