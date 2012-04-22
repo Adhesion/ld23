@@ -47,7 +47,7 @@ var Player = me.ObjectEntity.extend(
     
     die: function()
     {
-        me.levelDirector.loadLevel( me.levelDirector.getCurrentLevelId() );
+        me.state.current().restartLevel()
     },
     
     addAttached: function( enemy )
