@@ -49,14 +49,29 @@ var LevelChanger = me.LevelEntity.extend({
     }
 });
 
-var StoryNode = me.InvisibleEntity.extend({
-    init: function( x, y, settings ) {
+var StoryNode = me.InvisibleEntity.extend(
+{
+    init: function( x, y, settings )
+    {
         this.parent( x, y, settings );
         this.text = settings.text;
         this.toggled = false;
     },
-    onCollision: function() {
-        if( ! this.toggled ) {
+    
+    // only check collision with player, & only first time - prevents other stuff from hitting it & not other things (no multiple collision)
+    checkCollision: function( obj )
+    {
+        if ( obj == me.game.player && !this.toggled )
+        {
+            return this.parent( obj );
+        }
+        return null;
+    },
+    
+    onCollision: function()
+    {
+        if( ! this.toggled )
+        {
             me.state.current().showStoryText( this.text );
             this.toggled = true;
         }
