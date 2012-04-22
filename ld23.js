@@ -66,7 +66,6 @@ var PlayScreen = me.ScreenObject.extend(
         var level = me.levelDirector.getCurrentLevelId();
         var re = /level(\d+)/;
         var results = re.exec(level);
-        console.log( results );
         return results[1];
     },
 
