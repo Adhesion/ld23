@@ -259,6 +259,180 @@
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
+  <object name="enemy" x="915" y="1140" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="1766" y="852" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="1699" y="852" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="2459" y="950" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="2593" y="815" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="2544" y="945" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="2663" y="809" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="2738" y="807" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="2912" y="1047" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="3448" y="1002" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="2697" y="1136" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="2770" y="1139" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="3004" y="1133" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="3178" y="1140" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="3292" y="1141" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="4748" y="1144" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="4697" y="1140" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="5764" y="908" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="5609" y="1005" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="5532" y="1001" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="5981" y="1013" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="6153" y="1000" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="6085" y="1004" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="6361" y="914" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="6257" y="999" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="6328" y="997" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="6299" y="907" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="6546" y="814" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
+  <object name="enemy" x="6802" y="809" width="48" height="48">
+   <properties>
+    <property name="image" value="dude01"/>
+    <property name="spritewidth" value="48"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="foreground" width="200" height="30">
   <data encoding="base64">
