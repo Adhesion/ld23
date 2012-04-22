@@ -38,7 +38,7 @@ var Player = me.ObjectEntity.extend(
         this.curFlame = null;
         this.curLaser = null;
         
-        this.followPos = new me.Vector2d( this.pos.x, this.pos.y + 32 );
+        this.followPos = new me.Vector2d( this.pos.x, this.pos.y + 80 );
 
         me.game.viewport.follow( this.followPos, me.game.viewport.AXIS.BOTH );
         me.game.viewport.setDeadzone( me.game.viewport.width / 10, 1 );
@@ -103,7 +103,7 @@ var Player = me.ObjectEntity.extend(
         if ( me.input.isKeyPressed( "jump" ) )
         {
             this.doJump();
-            this.curFlame = new playerParticle( this.pos.x, this.pos.y, "jump", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ], 4, !this.curWalkLeft, "flame" );
+            this.curFlame = new playerParticle( this.pos.x, this.pos.y, "jump", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ], 4, this.curWalkLeft, "flame" );
             me.game.add( this.curFlame, 4 );
             me.game.sort();
         }
@@ -112,7 +112,6 @@ var Player = me.ObjectEntity.extend(
         {
             this.shakeOff();
         }
-        this.lastWalkLeft = this.curWalkLeft;
         
         // do damage only once every few frames
         if ( this.hpCounter == 0 )
@@ -160,11 +159,17 @@ var Player = me.ObjectEntity.extend(
                 this.curFlame.pos.x = this.pos.x;
             }
             this.curFlame.pos.y = this.pos.y + 32;
+            
+            if ( this.lastWalkLeft != this.curWalkLeft )
+            {
+                this.curFlame.flipX( this.curWalkLeft );
+            }
         }
         if ( this.curLaser )
         {
         
         }
+        this.lastWalkLeft = this.curWalkLeft;
         
         this.followPos.x = this.pos.x;
         this.followPos.y = this.pos.y + 32;
