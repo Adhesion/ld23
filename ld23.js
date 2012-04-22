@@ -41,7 +41,6 @@ var jsApp =
 
 var LevelChanger = me.LevelEntity.extend({
     init: function( x, y, settings ) {
-        console.log("Level changer");
         this.parent( x, y, settings );
     },
     goTo: function ( level ) {
