@@ -117,12 +117,12 @@ var Player = me.ObjectEntity.extend(
             me.game.add( this.curLazer, 5 );
             me.game.sort();
             this.lazerCooldown = this.lazerMax;
+            //me.game.viewport.shake( 8, 15, me.game.viewport.AXIS.BOTH );
         }
         else if ( this.lazerCooldown > 0 )
         {
             this.lazerCooldown--;
         }
-        
         
         if ( this.curWalkLeft != this.lastWalkLeft || me.input.isKeyPressed( "jump" ) )
         {
@@ -246,13 +246,9 @@ var playerParticle = me.ObjectEntity.extend(
     },
     
     // small hack to allow for multiple collision, effectively
-    // ignore collision with player - if not, player collision hits this and breaks out of loop before it gets to enemies
+    // ignore collision with this as recipient - if not, player collision hits this and breaks out of loop before it gets to enemies
     checkCollision: function( obj )
     {
-        if ( obj == me.game.player )
-        {
-            return null;
-        }
-        return this.parent( obj );
+        return null;
     }
 });
