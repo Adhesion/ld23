@@ -12,9 +12,9 @@ var Player = me.ObjectEntity.extend(
     {
         this.parent( x, y, settings );
         
-        this.setVelocity( 4.0, 10.0 );
+        this.setVelocity( 5.0, 14.0 );
         this.gravity = 0.5;
-        this.setFriction( 0.2, 0.2 );
+        this.setFriction( 0.2, 0.1 );
         
         this.updateColRect( 36, 72, -1 );
         
