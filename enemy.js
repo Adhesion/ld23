@@ -18,6 +18,7 @@ var Enemy = me.ObjectEntity.extend(
         this.updateColRect( 8, 32, -1 );
         
         this.collidable = true;
+        this.playerCollidable = true;
         this.type = me.game.ENEMY_OBJECT;
         
         this.addAnimation( "idle", [0] );
@@ -38,24 +39,61 @@ var Enemy = me.ObjectEntity.extend(
         this.attachCounter -= amt;
     },
     
+    spawnParticle: function( x, y, sprite, spritewidth, frames, speed )
+    {
+        var settings = new Object();
+        settings.image = sprite;
+        settings.spritewidth = 48;
+        
+        var particle = new me.ObjectEntity( x, y, settings );
+        particle.animationspeed = speed;
+        particle.addAnimation( "play", frames );
+        particle.setCurrentAnimation( "play", function() { me.game.remove( particle ) } );
+        me.game.add( particle, 5 );
+        me.game.sort();
+    },
+    
+    die: function()
+    {
+        this.alive = false;
+        me.game.remove( this );
+        if ( this.isAttached )
+        {
+            me.game.player.removeAttached( this.GUID );
+        }
+    },
+    
     onCollision: function( res, obj )
     {
-        if ( obj == me.game.player )
+        if ( obj == me.game.player && this.playerCollidable )
         {
             if ( res.y > 0 )
             {
                 // kill enemies on stomp? may change later
-                this.alive = false;
-                me.game.remove( this );
+                this.die();
+                
+                this.spawnParticle( this.pos.x, this.pos.y, "bloodsplat", 48, [ 0, 1, 2, 3, 4, 5, 6 ], 4 );
             }
             else
             {
                 this.isAttached = true;
                 this.posDiffX = me.game.player.pos.x - this.pos.x;
                 this.posDiffY = me.game.player.pos.y - this.pos.y;
-                this.collidable = false;
+                this.playerCollidable = false;
                 me.game.player.addAttached( this );
+                
+                this.spawnParticle( this.pos.x, this.pos.y - 48, "heart", 48, [ 0, 1, 2, 3, 4, 5, 6 ], 4 );
             }
+        }
+        else if ( obj.type == "flame" )
+        {
+            this.die();
+            this.spawnParticle( this.pos.x, this.pos.y, "burned", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ], 4 );
+        }
+        else if ( obj.type == "laser" )
+        {
+            this.die();
+            alert( "laser collision" );
         }
     },
 
@@ -104,7 +142,7 @@ var Enemy = me.ObjectEntity.extend(
             }
             else
             {
-                this.collidable = true;
+                this.playerCollidable = true;
             }
         }
         

@@ -31,9 +31,12 @@ var Player = me.ObjectEntity.extend(
         this.hpCounter = 0;
         this.hpCounterMax = 30;
         
-        this.addAnimation( "idle", [0] );
-        this.addAnimation( "jump", [1] );
-        this.addAnimation( "run", [2, 3, 4, 5] );
+        this.addAnimation( "idle", [ 0 ] );
+        this.addAnimation( "jump", [ 1 ] );
+        this.addAnimation( "run", [ 2, 3, 4, 5 ] );
+        
+        this.curFlame = null;
+        this.curLaser = null;
         
         me.game.viewport.follow( this.pos, me.game.viewport.AXIS.BOTH );
         
@@ -97,6 +100,9 @@ var Player = me.ObjectEntity.extend(
         if ( me.input.isKeyPressed( "jump" ) )
         {
             this.doJump();
+            this.curFlame = new playerParticle( this.pos.x, this.pos.y, "jump", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ], 4, !this.curWalkLeft, "flame" );
+            me.game.add( this.curFlame, 4 );
+            me.game.sort();
         }
         
         if ( this.curWalkLeft != this.lastWalkLeft || me.input.isKeyPressed( "jump" ) )
@@ -122,6 +128,7 @@ var Player = me.ObjectEntity.extend(
             this.die();
         }
         
+        // set animation states
         if ( this.jumping || this.falling )
         {
             this.setCurrentAnimation( "jump" );
@@ -138,6 +145,25 @@ var Player = me.ObjectEntity.extend(
         this.updateMovement();
         var res = me.game.collide( this );
         
+        // set proper flame/laser positions
+        if ( this.curFlame )
+        {
+            if ( this.curWalkLeft )
+            {
+                this.curFlame.pos.x = this.pos.x + 96;
+            }
+            else
+            {
+                this.curFlame.pos.x = this.pos.x;
+            }
+            this.curFlame.pos.y = this.pos.y + 32;
+        }
+        if ( this.curLaser )
+        {
+        
+        }
+        
+        // broken method to restrict left cam movement
         /*if ( me.game.viewport.pos.x < this.lastCamX )
         {
             me.game.viewport.move( this.lastCamX, me.game.viewport.pos.y );
@@ -150,5 +176,37 @@ var Player = me.ObjectEntity.extend(
             return true;
         }        
         return false;
+    }
+});
+
+var playerParticle = me.ObjectEntity.extend(
+{
+    init: function( x, y, sprite, spritewidth, frames, speed, flip, type )
+    {
+        var settings = new Object();
+        settings.image = sprite;
+        settings.spritewidth = 48;
+        
+        this.parent( x, y, settings );
+        
+        this.animationspeed = speed;
+        this.addAnimation( "play", frames );
+        this.setCurrentAnimation( "play", function() { me.game.remove( this ) } );
+        this.type = type;
+        this.flipX( flip );
+        
+        this.collidable = true;
+    },
+    
+    update: function()
+    {
+        me.game.collide( this );
+        this.parent();
+        return true;
+    },
+    
+    onCollision: function()
+    {
+        //alert( "part coll" );
     }
 });
