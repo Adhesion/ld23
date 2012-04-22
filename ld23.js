@@ -49,14 +49,33 @@ var LevelChanger = me.LevelEntity.extend({
     }
 });
 
+var StoryNode = me.InvisibleEntity.extend({
+    init: function( x, y, settings ) {
+        this.parent( x, y, settings );
+        this.text = settings.text;
+        this.toggled = false;
+    },
+    onCollision: function() {
+        if( ! this.toggled ) {
+            me.state.current().showStoryText( this.text );
+            this.toggled = true;
+        }
+    }
+});
+
 var PlayScreen = me.ScreenObject.extend(
 {
 
     init: function () {
         me.entityPool.add("LevelChanger", LevelChanger);
+        me.entityPool.add("StoryNode", StoryNode);
         this.levelDisplay = new LevelDisplay();
+        this.storyDisplay = new StoryDisplay();
     },
 
+    showStoryText: function( text ) {
+        this.storyDisplay.setText( text );
+    },
 
     changeLevel: function( l ) {
         this.levelDisplay.reset();
@@ -74,7 +93,8 @@ var PlayScreen = me.ScreenObject.extend(
         // stuff to reset on state change
         me.game.addHUD( 0, 0, me.video.getWidth(), me.video.getHeight() );
         me.game.HUD.addItem( "hp", new HPDisplay( 620, 0 ) );
-        me.game.HUD.addItem( "levelTitle", this.levelDisplay );
+        me.game.HUD.addItem( "levelDisplay", this.levelDisplay );
+        me.game.HUD.addItem( "storyDisplay", this.storyDisplay );
         this.restartLevel();
     },
 

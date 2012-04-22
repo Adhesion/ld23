@@ -123,6 +123,16 @@
     <property name="to" value="level1"/>
    </properties>
   </object>
+  <object name="StoryNode" x="268" y="216" width="133" height="259">
+   <properties>
+    <property name="text" value="Tiny World Hates Him!"/>
+   </properties>
+  </object>
+  <object name="StoryNode" x="1159" y="282" width="144" height="125">
+   <properties>
+    <property name="text" value="Escape Tiny World!!!"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="collision" width="100" height="15">
   <data encoding="base64">
