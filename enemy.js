@@ -65,6 +65,21 @@ var Enemy = me.ObjectEntity.extend(
     
     onCollision: function( res, obj )
     {
+        this.collide( res, obj );
+    },
+    
+    checkCollision: function( obj )
+    {
+        // collision optimization - this may not actually be necessary if we don't need to check enemy collision against something else
+        if ( this.type == obj.type )
+        {
+            return null;
+        }
+        return this.parent( obj );
+    },
+    
+    collide: function( res, obj )
+    {
         if ( obj == me.game.player && this.playerCollidable )
         {
             if ( res.y > 0 )
@@ -85,15 +100,10 @@ var Enemy = me.ObjectEntity.extend(
                 this.spawnParticle( this.pos.x, this.pos.y - 48, "heart", 48, [ 0, 1, 2, 3, 4, 5, 6 ], 4 );
             }
         }
-        else if ( obj.type == "flame" )
+        else if ( obj.type == "flame" || obj.type == "laser" )
         {
             this.die();
             this.spawnParticle( this.pos.x, this.pos.y, "burned", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ], 4 );
-        }
-        else if ( obj.type == "laser" )
-        {
-            this.die();
-            alert( "laser collision" );
         }
     },
 
@@ -150,9 +160,9 @@ var Enemy = me.ObjectEntity.extend(
         {
             this.setCurrentAnimation( "jump" );
         }
-        
-        var res = this.updateMovement();
-        
+
+        this.updateMovement();
+
         if ( this.vel.x != 0 || this.vel.y != 0 )
         {
             this.parent( this );

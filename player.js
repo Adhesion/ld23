@@ -108,6 +108,11 @@ var Player = me.ObjectEntity.extend(
             me.game.sort();
         }
         
+        if (me.input.isKeyPressed( "shoot" ) )
+        {
+            
+        }
+        
         if ( this.curWalkLeft != this.lastWalkLeft || me.input.isKeyPressed( "jump" ) )
         {
             this.shakeOff();
@@ -216,8 +221,14 @@ var playerParticle = me.ObjectEntity.extend(
         return true;
     },
     
-    onCollision: function()
+    // small hack to allow for multiple collision, effectively
+    // ignore collision with player - if not, player collision hits this and breaks out of loop before it gets to enemies
+    checkCollision: function( obj )
     {
-        //alert( "part coll" );
+        if ( obj == me.game.player )
+        {
+            return null;
+        }
+        return this.parent( obj );
     }
 });
