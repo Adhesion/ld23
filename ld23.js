@@ -29,13 +29,15 @@ var jsApp =
     {
 
         me.state.set( me.state.PLAY, new PlayScreen() );
-        
+        me.state.set( me.state.MENU, new TitleScreen() );
+
         me.entityPool.add( "player", Player );
         me.entityPool.add( "enemy", Enemy );
-        
+
         me.debug.renderHitBox = true;
-        
-        me.state.change( me.state.PLAY );
+
+        me.state.change( me.state.MENU );
+
     }
 }
 
@@ -123,6 +125,35 @@ var PlayScreen = me.ScreenObject.extend(
     onDestroyEvent: function()
     {
  
+    }
+});
+
+var TitleScreen = me.ScreenObject.extend({
+    init: function() {
+        this.parent( true );
+    },
+
+    onResetEvent: function() {
+        if( ! this.title ) {
+            this.splash= me.loader.getImage("splash");
+            this.cta = me.loader.getImage("splash_cta");
+            this.title = me.loader.getImage("splash_title");
+        }
+
+        me.input.bindKey( me.input.KEY.ENTER, "enter", true );
+    },
+    update: function() {
+        if( me.input.isKeyPressed('enter')) {
+            me.state.change(me.state.PLAY);
+        }
+    },
+    draw: function(context) {
+        context.drawImage( this.splash, 0, 0 );
+        context.drawImage( this.title, 50, 150 );
+        context.drawImage( this.cta, 200, 400 );
+    },
+    onDestroyEvent: function() {
+        me.input.unbindKey(me.input.KEY.ENTER);
     }
 });
 
