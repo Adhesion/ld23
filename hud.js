@@ -22,8 +22,9 @@ var HPDisplay = me.HUD_Item.extend(
 
 var TemporaryDisplay = me.HUD_Item.extend({
     init: function( x, y, settings ) {
+        settings = settings || {};
         this.parent( x, y, settings );
-        this.font = new me.BitmapFont( "32x32_font", 32 );
+        this.font = settings.font || new me.BitmapFont( "32x32_font", 32 );
     },
 
     /** Resets the level value to default value and the timer to 0 */
@@ -58,7 +59,10 @@ var TemporaryDisplay = me.HUD_Item.extend({
 
 var StoryDisplay = TemporaryDisplay.extend({
     init: function() {
-        this.parent( 600, 100 );
+        this.parent( 400, 100, {
+            font: new me.BitmapFont( "16x16_font", 16 ),
+
+        });
         this.text = '';
     },
     setText: function( text ) {
