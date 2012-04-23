@@ -10,6 +10,8 @@ var gameResources =
 [
     { name: "player", type: "image", src: "data/player.png" },
     { name: "dude01", type: "image", src: "data/dude01.png" },
+    { name: "dude02", type: "image", src: "data/dude02.png" },
+    { name: "dude03", type: "image", src: "data/dude03.png" },
     { name: "bloodsplat", type: "image", src: "data/bloodsplat.png" },
     { name: "heart", type: "image", src: "data/heart.png" },
     { name: "burned", type: "image", src: "data/burned.png" },

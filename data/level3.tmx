@@ -55,7 +55,7 @@
   </object>
   <object name="enemy" x="566" y="1148" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
