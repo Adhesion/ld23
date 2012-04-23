@@ -106,12 +106,12 @@ var PlayScreen = me.ScreenObject.extend(
     changeLevel: function( l ) {
         this.levelDisplay.reset();
         var levelNum = this.parseLevel( l );
-        if ( levelNum == 3 )
+        if ( levelNum == 4 )
         {
             me.audio.stopTrack();
             me.audio.playTrack( "ld23-air" );
         }
-        else if ( levelNum == 6 )
+        else if ( levelNum == 7 )
         {
             me.audio.stopTrack();
             me.audio.playTrack( "ld23-space" );
