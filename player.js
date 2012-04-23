@@ -107,11 +107,11 @@ var Player = me.ObjectEntity.extend(
     {     
 		
 		var attached = this.attachedList.length;
-		if( attached > 4) attatched = 4;
+		if( attached > 5) attatched = 5;
 		
-		this.animationspeed = 6 + attached*2;
+		this.animationspeed = 6 + attached;
 		
-		this.setVelocity( 5 - attached, 14.0 );
+		this.setVelocity( 5 - (attached/2.0), 14.0 );
 		
         if ( me.input.isKeyPressed( "left" ) )
         {
@@ -166,7 +166,7 @@ var Player = me.ObjectEntity.extend(
         // do damage only once every few frames
         if ( this.hpCounter == 0 )
         {
-            this.hit( this.attachedList.length*5 );
+            this.hit( this.attachedList.length*3 );
             this.hpCounter = this.hpCounterMax;
             if ( this.attachedList.length > 0 )
             {
