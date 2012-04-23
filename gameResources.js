@@ -35,6 +35,7 @@ var gameResources =
     { name: "area01_parallax1", type: "image", src: "data/area01_parallax1.png" },
     { name: "area02_parallax1", type: "image", src: "data/area02_parallax1.png" },
     { name: "area03_parallax1", type: "image", src: "data/area03_parallax1.png" },
+    { name: "area03_parallax2", type: "image", src: "data/area03_parallax2.png" },
     { name: "level0", type: "tmx", src: "data/level0.tmx" },
     { name: "level1", type: "tmx", src: "data/level1.tmx" },
     { name: "level2", type: "tmx", src: "data/level2.tmx" },
