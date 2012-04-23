@@ -56,7 +56,15 @@ var Player = me.ObjectEntity.extend(
     
     die: function()
     {
-        me.state.current().restartLevel()
+        me.game.lives--;
+        if ( me.game.lives >= 0 )
+        {
+            me.state.current().restartLevel();
+        }
+        else
+        {
+            me.state.change( me.state.GAMEOVER );
+        }
     },
     
     addAttached: function( enemy )

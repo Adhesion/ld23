@@ -16,7 +16,8 @@ var HPDisplay = me.HUD_Item.extend(
     
     draw: function( context, x, y )
     {
-        this.font.draw( context, "HP: " + this.value, this.pos.x + x, this.pos.y + y );
+        this.font.draw( context, "LIVES: " + me.game.lives, this.pos.x + x, this.pos.y + y );
+        this.font.draw( context, "HP: " + this.value, this.pos.x + x, this.pos.y + y + 30 );
     }
 });
 
