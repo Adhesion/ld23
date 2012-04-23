@@ -127,7 +127,7 @@ var PlayScreen = me.ScreenObject.extend(
     {
         // stuff to reset on state change
         me.game.addHUD( 0, 0, me.video.getWidth(), me.video.getHeight() );
-        me.game.HUD.addItem( "hp", new HPDisplay( 620, 0 ) );
+        me.game.HUD.addItem( "hp", new HPDisplay( 450, 15 ) );
         me.game.HUD.addItem( "levelDisplay", this.levelDisplay );
         me.game.HUD.addItem( "storyDisplay", this.storyDisplay );
         this.restartLevel(location.hash.substr(1));
@@ -203,10 +203,16 @@ var GameOverScreen = me.ScreenObject.extend(
     {
         if ( !this.background )
         {
-            this.font = new me.BitmapFont( "16x16_font", 16 );
+            this.font = new me.BitmapFont( "32x32_font", 32 );
+            this.font.set("center", 1);
+            
+            this.font2 = new me.BitmapFont( "16x16_font", 16);
+            this.font2 .set("center", 1);
+            
             this.background = me.loader.getImage( "end_background" );
             this.great = me.loader.getImage( "end_great" );
             this.terrible = me.loader.getImage( "end_terrible" );
+            
         }
         me.audio.playTrack( "ld23-theme" );
     },
@@ -215,7 +221,7 @@ var GameOverScreen = me.ScreenObject.extend(
     {
         context.drawImage( this.background, 0, 0 );
         context.drawImage( me.game.lives >= 0 ? this.great : this.terrible, me.game.lives >= 0 ? 200 : 130, 50 );
-
+        
         var text = new Array();
 
         if ( me.game.kills == 0 )
@@ -229,19 +235,37 @@ var GameOverScreen = me.ScreenObject.extend(
             text[1] = "WELL, A FEW ACCIDENTS.";
             text[2] = "YOU KNOW WHAT I MEAN.";
         }
+        else if ( me.game.kills < 50 )
+        {
+            text[0] = "I GUESS IT'S NOT SO BAD...";
+        }
+        else if ( me.game.kills == 69)
+        {
+            text[0] = "TEE HEE";
+        }
+        else if ( me.game.kills < 100 )
+        {
+            text[0] = "HOW COULD YOU!?!";
+            text[1] = "THEY JUST WANTED TO HUGS.";
+        }
+        else if ( me.game.kills < 200 )
+        {
+            text[0] = "OH GOD...";
+            text[1] = "THEY WERE SO YOUNG!";
+        }
         else
         {
             text[0] = "YOU'RE AN INHUMAN MONSTER!!";
         }
 
-        var killString = "KILLS: " + me.game.kills;
-        this.font.draw( context, killString, 620, 350 );
+        var killString = "KILLS:" + me.game.kills;
+        this.font.draw( context, killString, 320, 150);
 
         for ( var i = 0; i < text.length; i++ )
         {
             //var string = text[i];
             //console.log( string );
-            this.font.draw( context, text[i], 620, 400 + ( i * 20 ) );
+            this.font2.draw( context, text[i], 320, 250 + ( i * 30 ) );
         }
     }
 });

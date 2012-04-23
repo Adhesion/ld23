@@ -9,15 +9,22 @@
 var HPDisplay = me.HUD_Item.extend(
 {
     init: function( x, y )
-    {
+    {	
+		this.livesIcon = me.loader.getImage("hud_lives");
+		this.hpIcon = me.loader.getImage("hud_hp");
         this.parent( x, y );
-        this.font = new me.BitmapFont( "32x32_font", 32 );
+        this.font = new me.BitmapFont( "16x16_font", 16 );
+		this.font.set("left", 1); 
     },
     
     draw: function( context, x, y )
     {
-        this.font.draw( context, "LIVES: " + me.game.lives, this.pos.x + x, this.pos.y + y );
-        this.font.draw( context, "HP: " + this.value, this.pos.x + x, this.pos.y + y + 30 );
+	context.drawImage( this.livesIcon, this.pos.x + x, this.pos.y + y - 4 );
+        this.font.draw( context, me.game.lives, this.pos.x + x + 48, this.pos.y + y );
+        
+        context.drawImage( this.hpIcon, this.pos.x + x + 80, this.pos.y + y - 3 );
+        this.font.draw( context, this.value + "%", this.pos.x + x + 110, this.pos.y + y );
+	
     }
 });
 
@@ -26,6 +33,7 @@ var TemporaryDisplay = me.HUD_Item.extend({
         settings = settings || {};
         this.parent( x, y, settings );
         this.font = settings.font || new me.BitmapFont( "32x32_font", 32 );
+		this.font.set("left", 1); 
     },
 
     /** Resets the level value to default value and the timer to 0 */
@@ -60,9 +68,8 @@ var TemporaryDisplay = me.HUD_Item.extend({
 
 var StoryDisplay = TemporaryDisplay.extend({
     init: function() {
-        this.parent( 400, 100, {
-            font: new me.BitmapFont( "16x16_font", 16 ),
-
+        this.parent( 50, 100, {
+            font: new me.BitmapFont( "32x32_font", 32),
         });
         this.text = '';
     },
@@ -78,9 +85,9 @@ var StoryDisplay = TemporaryDisplay.extend({
 var LevelDisplay = TemporaryDisplay.extend({
     init: function( )
     {
-        var x = me.video.getWidth() / 2;
-        var y = me.video.getHeight() / 2;
-        this.parent( x, y );
+        this.parent( 50, me.video.getHeight() *0.75, {
+            font: new me.BitmapFont( "64x64_font", 64),
+        } );
     },
     getText: function() {
         return "LEVEL " + me.state.current().getLevel();

@@ -10,6 +10,8 @@ var gameResources =
 [
     { name: "player", type: "image", src: "data/player.png" },
     { name: "dude01", type: "image", src: "data/dude01.png" },
+    { name: "dude02", type: "image", src: "data/dude02.png" },
+    { name: "dude03", type: "image", src: "data/dude03.png" },
     { name: "bloodsplat", type: "image", src: "data/bloodsplat.png" },
     { name: "heart", type: "image", src: "data/heart.png" },
     { name: "burned", type: "image", src: "data/burned.png" },
@@ -25,6 +27,9 @@ var gameResources =
     { name: "area02_level_tiles", type: "image", src: "data/area02_level_tiles.png" },
     { name: "16x16_font", type: "image", src: "data/16x16_font.png" },
     { name: "32x32_font", type: "image", src: "data/32x32_font.png" },
+    { name: "64x64_font", type: "image", src: "data/64x64_font.png" },
+    { name: "hud_hp", type: "image", src: "data/hud_hp.png" },
+    { name: "hud_lives", type: "image", src: "data/hud_lives.png" },
     { name: "collision_tiles", type: "image", src: "data/collision_tiles.png" },
     { name: "area01_parallax1", type: "image", src: "data/area01_parallax1.png" },
     { name: "area02_parallax1", type: "image", src: "data/area02_parallax1.png" },

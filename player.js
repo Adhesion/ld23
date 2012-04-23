@@ -30,6 +30,9 @@ var Player = me.ObjectEntity.extend(
         this.hp = 100;
         this.hpCounter = 0;
         this.hpCounterMax = 30;
+		this.regenCounter = 0;
+		this.regenCounterMax = 10;
+		this.regenCounterHitMax = 100;
         
         this.lazerCooldown = 0;
         this.lazerMax = 100;
@@ -97,10 +100,19 @@ var Player = me.ObjectEntity.extend(
     {
         this.hp -= dmg;
         me.game.HUD.setItemValue( "hp", this.hp );
+		//so it dosnt regen while being attacked
     },
     
     update: function()
-    {      
+    {     
+		
+		var attached = this.attachedList.length;
+		if( attached > 4) attatched = 4;
+		
+		this.animationspeed = 6 + attached*2;
+		
+		this.setVelocity( 5 - attached, 14.0 );
+		
         if ( me.input.isKeyPressed( "left" ) )
         {
             this.doWalk( true );
@@ -139,16 +151,29 @@ var Player = me.ObjectEntity.extend(
         {
             this.shakeOff();
         }
-        
+		
+        // regen when not being hit. 
+		if(this.regenCounter == 0){
+			if(this.hp < 100)this.hp++;
+			this.regenCounter = this.regenCounterMax;
+			me.game.HUD.setItemValue( "hp", this.hp );
+		}else{
+		 
+		  this.regenCounter--;
+		}
+		
+		
         // do damage only once every few frames
         if ( this.hpCounter == 0 )
         {
-            this.hit( this.attachedList.length );
+            this.hit( this.attachedList.length*5 );
             this.hpCounter = this.hpCounterMax;
             if ( this.attachedList.length > 0 )
             {
                 me.audio.play( "hurt" );
+				this.regenCounter = this.regenCounterHitMax;
             }
+			
         }
         else
         {
