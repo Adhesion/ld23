@@ -81,19 +81,14 @@
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="StoryNode" x="374" y="324" width="144" height="144">
+  <object name="StoryNode" x="845" y="321" width="144" height="144">
    <properties>
-    <property name="text" value="   Use [arrow keys] to move!"/>
+    <property name="text" value="C to fire lazer"/>
    </properties>
   </object>
-  <object name="StoryNode" x="940" y="321" width="144" height="144">
+  <object name="StoryNode" x="465" y="320" width="144" height="144">
    <properties>
-    <property name="text" value="   and [Z] to fire your lazer"/>
-   </properties>
-  </object>
-  <object name="StoryNode" x="648" y="322" width="144" height="144">
-   <properties>
-    <property name="text" value="   [X] to jump!"/>
+    <property name="text" value="X to jump"/>
    </properties>
   </object>
  </objectgroup>
