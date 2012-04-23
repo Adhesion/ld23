@@ -141,7 +141,7 @@ var Enemy = me.ObjectEntity.extend(
         else
         {
             this.setCurrentAnimation( "run" );
-            this.doWalk( me.game.player.pos.x < this.pos.x );
+            this.doWalk( me.game.player.pos.x + me.game.player.centerOffsetX < this.pos.x );
             
             // add random jump if "close"
             if ( Math.abs( me.game.player.pos.x - this.pos.x ) < 60 && Math.random() > 0.95 )
