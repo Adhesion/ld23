@@ -29,7 +29,7 @@
  <tileset firstgid="5" name="map" tilewidth="48" tileheight="48">
   <image source="area01_level_tiles.png" width="768" height="768"/>
  </tileset>
- <layer name="Parallax_layer1" width="150" height="15" visible="0">
+ <layer name="Parallax_layer1" width="150" height="15">
   <properties>
    <property name="imagesrc" value="area01_parallax1"/>
   </properties>
