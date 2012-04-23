@@ -120,7 +120,7 @@
    <properties>
     <property name="duration" value="250"/>
     <property name="fade" value="#000000"/>
-    <property name="to" value="level1"/>
+    <property name="to" value="level3"/>
    </properties>
   </object>
   <object name="StoryNode" x="268" y="936" width="133" height="259">
