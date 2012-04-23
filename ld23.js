@@ -96,12 +96,27 @@ var PlayScreen = me.ScreenObject.extend(
 
     changeLevel: function( l ) {
         this.levelDisplay.reset();
+        var levelNum = this.parseLevel( l );
+        if ( levelNum == 3 )
+        {
+            me.audio.stopTrack();
+            me.audio.playTrack( "ld23-air" );
+        }
+        else if ( levelNum == 6 )
+        {
+            me.audio.stopTrack();
+            me.audio.playTrack( "ld23-space" );
+        }
     },
 
     getLevel: function() {
-        var level = me.levelDirector.getCurrentLevelId();
+        return this.parseLevel( me.levelDirector.getCurrentLevelId() );
+    },
+    
+    parseLevel: function( input )
+    {
         var re = /level(\d+)/;
-        var results = re.exec(level);
+        var results = re.exec( input );
         return results[1];
     },
 
@@ -113,6 +128,7 @@ var PlayScreen = me.ScreenObject.extend(
         me.game.HUD.addItem( "levelDisplay", this.levelDisplay );
         me.game.HUD.addItem( "storyDisplay", this.storyDisplay );
         this.restartLevel(location.hash.substr(1));
+        me.audio.playTrack( "ld23-mars" );
     },
 
     restartLevel: function( level ) {
@@ -124,7 +140,7 @@ var PlayScreen = me.ScreenObject.extend(
 
     onDestroyEvent: function()
     {
- 
+        me.audio.stopTrack();
     }
 });
 
@@ -141,6 +157,7 @@ var TitleScreen = me.ScreenObject.extend({
         }
 
         me.input.bindKey( me.input.KEY.ENTER, "enter", true );
+        me.audio.playTrack( "ld23-theme" );
     },
     update: function() {
         if( me.input.isKeyPressed('enter')) {
@@ -149,11 +166,12 @@ var TitleScreen = me.ScreenObject.extend({
     },
     draw: function(context) {
         context.drawImage( this.splash, 0, 0 );
-        context.drawImage( this.title, 50, 150 );
-        context.drawImage( this.cta, 200, 400 );
+        context.drawImage( this.title, 50, 290 );
+        context.drawImage( this.cta, 200, 420 );
     },
     onDestroyEvent: function() {
         me.input.unbindKey(me.input.KEY.ENTER);
+        me.audio.stopTrack();
     }
 });
 

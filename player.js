@@ -109,15 +109,17 @@ var Player = me.ObjectEntity.extend(
             this.curFlame = new playerParticle( this.pos.x, this.pos.y, "jump", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ], 4, this.curWalkLeft, "flame" );
             me.game.add( this.curFlame, 4 );
             me.game.sort();
+            me.audio.play( "jump" );
         }
         
         if ( me.input.isKeyPressed( "shoot" ) && this.lazerCooldown == 0 )
         {
-            this.curLazer = new playerParticle( this.pos.x, this.pos.y, "lazer", 384, [ 0, 1, 2, 3, 4 ], 4, this.curWalkLeft, "lazer" );
+            this.curLazer = new playerParticle( this.pos.x, this.pos.y, "lazer", 384, [ 0, 1, 2, 3, 4 ], 5, this.curWalkLeft, "lazer" );
             me.game.add( this.curLazer, 5 );
             me.game.sort();
             this.lazerCooldown = this.lazerMax;
             me.game.viewport.shake( 8, 15, me.game.viewport.AXIS.BOTH );
+            me.audio.play( "lazer" );
         }
         else if ( this.lazerCooldown > 0 )
         {
@@ -134,6 +136,10 @@ var Player = me.ObjectEntity.extend(
         {
             this.hit( this.attachedList.length );
             this.hpCounter = this.hpCounterMax;
+            if ( this.attachedList.length > 0 )
+            {
+                me.audio.play( "hurt" );
+            }
         }
         else
         {

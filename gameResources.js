@@ -27,5 +27,15 @@ var gameResources =
     { name: "level0", type: "tmx", src: "data/level0.tmx" },
     { name: "level1", type: "tmx", src: "data/level1.tmx" },
     { name: "level2", type: "tmx", src: "data/level2.tmx" },
-    { name: "level3", type: "tmx", src: "data/level3.tmx" }
+    { name: "level3", type: "tmx", src: "data/level3.tmx" },
+    { name: "djump", type: "audio", src: "data/", channels : 2 },
+    { name: "grab", type: "audio", src: "data/", channels : 2 },
+    { name: "hurt", type: "audio", src: "data/", channels : 2 },
+    { name: "jump", type: "audio", src: "data/", channels : 2 },
+    { name: "off", type: "audio", src: "data/", channels : 2 },
+    { name: "lazer", type: "audio", src: "data/", channels : 2 },
+    { name: "ld23-theme", type: "audio", src: "data/", channels : 2 },
+    { name: "ld23-mars", type: "audio", src: "data/", channels : 2 },
+    { name: "ld23-air", type: "audio", src: "data/", channels : 2 },
+    { name: "ld23-space", type: "audio", src: "data/", channels : 2 },
 ];

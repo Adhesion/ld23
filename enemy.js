@@ -98,6 +98,8 @@ var Enemy = me.ObjectEntity.extend(
                 me.game.player.addAttached( this );
                 
                 this.spawnParticle( this.pos.x, this.pos.y - 48, "heart", 48, [ 0, 1, 2, 3, 4, 5, 6 ], 4 );
+                
+                me.audio.play( "grab" );
             }
         }
         else if ( obj.type == "flame" || obj.type == "lazer" )
@@ -128,9 +130,11 @@ var Enemy = me.ObjectEntity.extend(
             }
             else
             {
+                // fall off
                 this.isAttached = false;
                 me.game.player.removeAttached( this.GUID );
                 this.flicker( this.attachMax / this.attachRate );
+                me.audio.play( "off " );
             }
         }
         else
@@ -142,6 +146,7 @@ var Enemy = me.ObjectEntity.extend(
             if ( Math.abs( me.game.player.pos.x - this.pos.x ) < 60 && Math.random() > 0.95 )
             {
                 this.doJump();
+                me.audio.play( "djump" );
             }
             
             // add a delay after deattach wherein the enemy can't collide with player
