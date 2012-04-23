@@ -30,6 +30,7 @@ var jsApp =
 
         me.state.set( me.state.PLAY, new PlayScreen() );
         me.state.set( me.state.MENU, new TitleScreen() );
+        me.state.set( me.state.GAMEOVER, new GameOverScreen() );
 
         me.entityPool.add( "player", Player );
         me.entityPool.add( "enemy", Enemy );
@@ -88,6 +89,8 @@ var PlayScreen = me.ScreenObject.extend(
         me.entityPool.add("StoryNode", StoryNode);
         this.levelDisplay = new LevelDisplay();
         this.storyDisplay = new StoryDisplay();
+        me.game.lives = 5;
+        me.game.kills = 0;
     },
 
     showStoryText: function( text ) {
@@ -140,6 +143,7 @@ var PlayScreen = me.ScreenObject.extend(
 
     onDestroyEvent: function()
     {
+        me.game.disableHUD();
         me.audio.stopTrack();
     }
 });
@@ -172,6 +176,60 @@ var TitleScreen = me.ScreenObject.extend({
     onDestroyEvent: function() {
         me.input.unbindKey(me.input.KEY.ENTER);
         me.audio.stopTrack();
+    }
+});
+
+var GameOverScreen = me.ScreenObject.extend(
+{
+    init: function()
+    {
+        this.parent( true );
+    },
+    
+    onResetEvent: function()
+    {
+        if ( !this.background )
+        {
+            this.font = new me.BitmapFont( "16x16_font", 16 );
+            this.background = me.loader.getImage( "end_background" );
+            this.great = me.loader.getImage( "end_great" );
+            this.terrible = me.loader.getImage( "end_terrible" );
+        }
+        me.audio.playTrack( "ld23-theme" );
+    },
+    
+    draw: function( context, x, y )
+    {
+        context.drawImage( this.background, 0, 0 );
+        context.drawImage( me.game.lives >= 0 ? this.great : this.terrible, me.game.lives >= 0 ? 200 : 130, 50 );
+
+        var text = new Array();
+
+        if ( me.game.kills == 0 )
+        {
+            text[0] = "PERFECT!! HAIL OUR ROBOT LORD";
+            text[1] = "AND SAVIOR! HAIL! O HAPPY DAY";
+        }
+        else if ( me.game.kills < 10 )
+        {
+            text[0] = "COULD'VE BEEN AN ACCIDENT.";
+            text[1] = "WELL, A FEW ACCIDENTS.";
+            text[2] = "YOU KNOW WHAT I MEAN.";
+        }
+        else
+        {
+            text[0] = "YOU'RE AN INHUMAN MONSTER!!";
+        }
+
+        var killString = "KILLS: " + me.game.kills;
+        this.font.draw( context, killString, 620, 350 );
+
+        for ( var i = 0; i < text.length; i++ )
+        {
+            //var string = text[i];
+            //console.log( string );
+            this.font.draw( context, text[i], 620, 400 + ( i * 20 ) );
+        }
     }
 });
 

@@ -12,7 +12,7 @@ var Enemy = me.ObjectEntity.extend(
     {
         this.parent( x, y, settings );
         
-        this.setVelocity( 2.5, 7.0 );
+        this.setVelocity( 2.8 + ( Math.random() * 1.7 ), 7.0 + Math.random() );
         this.gravity = 0.5;
         
         this.updateColRect( 8, 32, -1 );
@@ -86,7 +86,7 @@ var Enemy = me.ObjectEntity.extend(
             {
                 // kill enemies on stomp? may change later
                 this.die();
-                
+                me.game.kills++;
                 this.spawnParticle( this.pos.x, this.pos.y, "bloodsplat", 48, [ 0, 1, 2, 3, 4, 5, 6 ], 4 );
             }
             else
@@ -105,6 +105,7 @@ var Enemy = me.ObjectEntity.extend(
         else if ( obj.type == "flame" || obj.type == "lazer" )
         {
             this.die();
+            me.game.kills++;
             this.spawnParticle( this.pos.x, this.pos.y, "burned", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ], 4 );
         }
     },
@@ -134,7 +135,7 @@ var Enemy = me.ObjectEntity.extend(
                 this.isAttached = false;
                 me.game.player.removeAttached( this.GUID );
                 this.flicker( this.attachMax / this.attachRate );
-                me.audio.play( "off " );
+                me.audio.play( "off" );
             }
         }
         else
