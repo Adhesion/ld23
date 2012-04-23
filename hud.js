@@ -69,7 +69,7 @@ var TemporaryDisplay = me.HUD_Item.extend({
 var StoryDisplay = TemporaryDisplay.extend({
     init: function() {
         this.parent( 50, 100, {
-            font: new me.BitmapFont( "32x32_font", 32),
+            font: new me.BitmapFont( "16x16_font", 16),
         });
         this.text = '';
     },
