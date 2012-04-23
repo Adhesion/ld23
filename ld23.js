@@ -151,6 +151,7 @@ var PlayScreen = me.ScreenObject.extend(
 var TitleScreen = me.ScreenObject.extend({
     init: function() {
         this.parent( true );
+        this.counter = 480;
     },
 
     onResetEvent: function() {
@@ -163,16 +164,28 @@ var TitleScreen = me.ScreenObject.extend({
         me.input.bindKey( me.input.KEY.ENTER, "enter", true );
         me.audio.playTrack( "ld23-theme" );
     },
+
     update: function() {
         if( me.input.isKeyPressed('enter')) {
             me.state.change(me.state.PLAY);
         }
+        if ( this.counter > 0 )
+        {
+            this.counter--;
+        }
+        // have to force redraw :(
+        me.game.repaint();
     },
+
     draw: function(context) {
         context.drawImage( this.splash, 0, 0 );
-        context.drawImage( this.title, 50, 290 );
-        context.drawImage( this.cta, 200, 420 );
+        context.drawImage( this.title, 50, 290 + ( this.counter / 5.85 ) );
+        if ( this.counter == 0 )
+        {
+            context.drawImage( this.cta, 200, 420 );
+        }
     },
+
     onDestroyEvent: function() {
         me.input.unbindKey(me.input.KEY.ENTER);
         me.audio.stopTrack();

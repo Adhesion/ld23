@@ -41,7 +41,8 @@ var Player = me.ObjectEntity.extend(
         this.curFlame = null;
         this.curLazer = null;
         
-        this.followPos = new me.Vector2d( this.pos.x, this.pos.y + 80 );
+        this.centerOffsetX = 72;
+        this.followPos = new me.Vector2d( this.pos.x + this.centerOffsetX, this.pos.y + 80 );
 
         me.game.viewport.follow( this.followPos, me.game.viewport.AXIS.BOTH );
         me.game.viewport.setDeadzone( me.game.viewport.width / 10, 1 );
@@ -214,8 +215,8 @@ var Player = me.ObjectEntity.extend(
         }
         this.lastWalkLeft = this.curWalkLeft;
         
-        this.followPos.x = this.pos.x;
-        this.followPos.y = this.pos.y + 32;
+        this.followPos.x = this.pos.x + this.centerOffsetX;
+        this.followPos.y = this.pos.y + 80;
 
         // broken method to restrict left cam movement
         /*if ( me.game.viewport.pos.x < this.lastCamX )
