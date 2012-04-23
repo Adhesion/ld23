@@ -172,6 +172,7 @@ var Player = me.ObjectEntity.extend(
             {
                 me.audio.play( "hurt" );
 				this.regenCounter = this.regenCounterHitMax;
+                me.game.viewport.shake( this.attachedList.length * 2, 5, me.game.viewport.AXIS_BOTH );
             }
 			
         }
