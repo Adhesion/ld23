@@ -27,10 +27,11 @@ var jsApp =
     
     loaded: function()
     {
-
         me.state.set( me.state.PLAY, new PlayScreen() );
         me.state.set( me.state.MENU, new TitleScreen() );
         me.state.set( me.state.GAMEOVER, new GameOverScreen() );
+        
+        me.state.transition( "fade", "#000000", 300 );
 
         me.entityPool.add( "player", Player );
         me.entityPool.add( "enemy", Enemy );
@@ -38,7 +39,6 @@ var jsApp =
         me.debug.renderHitBox = false;
 
         me.state.change( me.state.MENU );
-
     }
 }
 
@@ -47,6 +47,12 @@ var LevelChanger = me.LevelEntity.extend({
         this.parent( x, y, settings );
     },
     goTo: function ( level ) {
+        // dumb hack
+        if ( this.gotolevel == "gameover" )
+        {
+            me.state.change( me.state.GAMEOVER );
+            return;
+        }
         this.parent( level );
         me.state.current().changeLevel( this.gotolevel );
     }
