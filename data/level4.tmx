@@ -55,7 +55,7 @@
   </object>
   <object name="enemy" x="851" y="1142" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
@@ -66,171 +66,153 @@
     <property name="to" value="level5"/>
    </properties>
   </object>
-  <object name="enemy" x="1208" y="664" width="48" height="48">
+  <object name="enemy" x="1173" y="1140" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="1264" y="662" width="48" height="48">
+  <object name="enemy" x="1503" y="1058" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="868" y="614" width="48" height="48">
+  <object name="enemy" x="1637" y="855" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="1330" y="660" width="48" height="48">
+  <object name="enemy" x="1715" y="858" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="932" y="616" width="48" height="48">
+  <object name="enemy" x="1255" y="643" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="1980" y="564" width="48" height="48">
+  <object name="enemy" x="1746" y="515" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="1768" y="504" width="48" height="48">
+  <object name="enemy" x="1964" y="567" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="2038" y="566" width="48" height="48">
+  <object name="enemy" x="2055" y="558" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="2154" y="570" width="48" height="48">
+  <object name="enemy" x="2903" y="703" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="2096" y="570" width="48" height="48">
+  <object name="enemy" x="2546" y="1134" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="2824" y="712" width="48" height="48">
+  <object name="enemy" x="2737" y="1188" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="2892" y="712" width="48" height="48">
+  <object name="enemy" x="3343" y="664" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="2958" y="710" width="48" height="48">
+  <object name="enemy" x="3428" y="661" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="2872" y="1196" width="48" height="48">
+  <object name="enemy" x="3573" y="531" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3320" y="662" width="48" height="48">
+  <object name="enemy" x="3643" y="531" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3454" y="662" width="48" height="48">
+  <object name="enemy" x="3718" y="521" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3392" y="660" width="48" height="48">
+  <object name="enemy" x="3891" y="658" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3562" y="528" width="48" height="48">
+  <object name="enemy" x="3970" y="667" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3606" y="686" width="48" height="48">
+  <object name="enemy" x="4303" y="749" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3654" y="524" width="48" height="48">
+  <object name="enemy" x="4379" y="746" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3618" y="574" width="48" height="48">
+  <object name="enemy" x="4509" y="670" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3844" y="668" width="48" height="48">
+  <object name="enemy" x="4661" y="618" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3918" y="664" width="48" height="48">
+  <object name="enemy" x="4952" y="649" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="3976" y="664" width="48" height="48">
+  <object name="enemy" x="5203" y="658" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="enemy" x="4342" y="756" width="48" height="48">
+  <object name="enemy" x="3837" y="1197" width="48" height="48">
    <properties>
-    <property name="image" value="dude01"/>
-    <property name="spritewidth" value="48"/>
-   </properties>
-  </object>
-  <object name="enemy" x="4032" y="662" width="48" height="48">
-   <properties>
-    <property name="image" value="dude01"/>
-    <property name="spritewidth" value="48"/>
-   </properties>
-  </object>
-  <object name="enemy" x="4674" y="616" width="48" height="48">
-   <properties>
-    <property name="image" value="dude01"/>
-    <property name="spritewidth" value="48"/>
-   </properties>
-  </object>
-  <object name="enemy" x="5024" y="664" width="48" height="48">
-   <properties>
-    <property name="image" value="dude01"/>
+    <property name="image" value="dude02"/>
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
