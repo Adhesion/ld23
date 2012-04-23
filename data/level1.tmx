@@ -104,11 +104,11 @@
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="me.LevelEntity" x="6997" y="295" width="202" height="181">
+  <object name="LevelChanger" x="6997" y="295" width="202" height="181">
    <properties>
     <property name="duration" value="250"/>
     <property name="fade" value="#000000"/>
-    <property name="to" value="level1"/>
+    <property name="to" value="level2"/>
    </properties>
   </object>
   <object name="enemy" x="3333" y="233" width="48" height="48">

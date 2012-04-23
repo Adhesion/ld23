@@ -110,19 +110,19 @@ var PlayScreen = me.ScreenObject.extend(
         me.game.HUD.addItem( "hp", new HPDisplay( 620, 0 ) );
         me.game.HUD.addItem( "levelDisplay", this.levelDisplay );
         me.game.HUD.addItem( "storyDisplay", this.storyDisplay );
-        this.restartLevel();
+        this.restartLevel(location.hash.substr(1));
     },
 
-    restartLevel: function() {
+    restartLevel: function( level ) {
         this.levelDisplay.reset();
-        var level = me.levelDirector.getCurrentLevelId();
+        level = level || me.levelDirector.getCurrentLevelId();
         me.levelDirector.loadLevel( level );
         me.game.sort();
     },
 
     onDestroyEvent: function()
     {
-        
+ 
     }
 });
 

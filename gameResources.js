@@ -16,10 +16,13 @@ var gameResources =
     { name: "lazer", type: "image", src: "data/lazer.png" },
     { name: "jump", type: "image", src: "data/jump.png" },
     { name: "area01_level_tiles", type: "image", src: "data/area01_level_tiles.png" },
+    { name: "area02_level_tiles", type: "image", src: "data/area02_level_tiles.png" },
     { name: "16x16_font", type: "image", src: "data/16x16_font.png" },
     { name: "32x32_font", type: "image", src: "data/32x32_font.png" },
     { name: "collision_tiles", type: "image", src: "data/collision_tiles.png" },
     { name: "area01_parallax1", type: "image", src: "data/area01_parallax1.png" },
     { name: "level0", type: "tmx", src: "data/level0.tmx" },
-    { name: "level1", type: "tmx", src: "data/level1.tmx" }
+    { name: "level1", type: "tmx", src: "data/level1.tmx" },
+    { name: "level2", type: "tmx", src: "data/level2.tmx" },
+    { name: "level3", type: "tmx", src: "data/level3.tmx" }
 ];
