@@ -102,17 +102,32 @@ var Player = me.ObjectEntity.extend(
         me.game.HUD.setItemValue( "hp", this.hp );
 		//so it dosnt regen while being attacked
     },
-    
+
+    addTestObject: function()
+    {
+        var settings = {};
+        settings.image = "dude01";
+        settings.spritewidth = 48;
+
+        var test = new me.ObjectEntity( this.pos.x + ( Math.random() * 20 ), this.pos.y + ( Math.random() * 20 ), settings );
+        test.update = function() {};
+        test.collidable = false;
+        me.game.add( test, 5 );
+        me.game.sort();
+        //console.log( "add test object: " + test.pos.x + ", " + test.pos.y );
+    },
+
     update: function()
-    {     
-		
-		var attached = this.attachedList.length;
-		if( attached > 5) attatched = 5;
-		
-		this.animationspeed = 6 + attached;
-		
-		this.setVelocity( 5 - (attached/2.0), 14.0 );
-		
+    {
+        //this.addTestObject();
+     	
+        var attached = this.attachedList.length;
+        if ( attached > 5 ) attatched = 5;
+
+        this.animationspeed = 6 + attached;
+
+        this.setVelocity( 5 - (attached/2.0), 14.0 );
+
         if ( me.input.isKeyPressed( "left" ) )
         {
             this.doWalk( true );
