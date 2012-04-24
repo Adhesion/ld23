@@ -28,6 +28,7 @@ var jsApp =
     loaded: function()
     {
         me.state.set( me.state.PLAY, new PlayScreen() );
+        me.state.set( me.state.INTRO, new RadmarsScreen() );
         me.state.set( me.state.MENU, new TitleScreen() );
         me.state.set( me.state.GAMEOVER, new GameOverScreen() );
         
@@ -38,7 +39,7 @@ var jsApp =
 
         me.debug.renderHitBox = false;
 
-        me.state.change( me.state.MENU );
+        me.state.change( me.state.INTRO );
     }
 }
 
@@ -154,10 +155,73 @@ var PlayScreen = me.ScreenObject.extend(
     }
 });
 
+var RadmarsScreen = me.ScreenObject.extend({
+    init: function() {
+        this.parent( true );
+        this.counter = 0;
+    },
+
+    onResetEvent: function() {
+        if( ! this.title ) {
+            this.bg= me.loader.getImage("intro_bg");
+            this.glasses1 = me.loader.getImage("intro_glasses1"); // 249 229
+            this.glasses2 = me.loader.getImage("intro_glasses2"); // 249 229
+            this.glasses3 = me.loader.getImage("intro_glasses3"); // 249 229
+            this.glasses4 = me.loader.getImage("intro_glasses4"); // 249 229
+            this.text_mars = me.loader.getImage("intro_mars"); // 266 317
+            this.text_radmars1 = me.loader.getImage("intro_radmars1"); // 224 317
+            this.text_radmars2 = me.loader.getImage("intro_radmars2");
+        }
+
+        me.input.bindKey( me.input.KEY.ENTER, "enter", true );
+        me.audio.playTrack( "ld23-theme" );
+    },
+
+    update: function() {
+        if( me.input.isKeyPressed('enter')) {
+            me.state.change(me.state.MENU);
+        }
+        if ( this.counter < 200 )
+        {
+            this.counter++;
+        }else{
+			me.state.change(me.state.MENU);
+		}
+        // have to force redraw :(
+        me.game.repaint();
+    },
+
+    draw: function(context) {
+        context.drawImage( this.bg, 0, 0 );
+		if( this.counter < 130) context.drawImage( this.text_mars, 266, 317 );
+		else if( this.counter < 135) context.drawImage( this.text_radmars2, 224, 317 );
+		else if( this.counter < 140) context.drawImage( this.text_radmars1, 224, 317 );
+		else if( this.counter < 145) context.drawImage( this.text_radmars2, 224, 317 );
+		else if( this.counter < 150) context.drawImage( this.text_radmars1, 224, 317 );
+		else if( this.counter < 155) context.drawImage( this.text_radmars2, 224, 317 );
+		else if( this.counter < 160) context.drawImage( this.text_radmars1, 224, 317 );
+		else if( this.counter < 165) context.drawImage( this.text_radmars2, 224, 317 );
+		else context.drawImage( this.text_radmars1, 224, 317 );
+		
+		if( this.counter < 100) context.drawImage( this.glasses1, 249, 229*(this.counter/100) );
+		else if( this.counter < 105) context.drawImage( this.glasses2, 249, 229 );
+		else if( this.counter < 110) context.drawImage( this.glasses3, 249, 229 );
+		else if( this.counter < 115) context.drawImage( this.glasses4, 249, 229 );
+		else context.drawImage( this.glasses1, 249, 229 );
+		
+        
+    },
+
+    onDestroyEvent: function() {
+        me.input.unbindKey(me.input.KEY.ENTER);
+       
+    }
+});
+
 var TitleScreen = me.ScreenObject.extend({
     init: function() {
         this.parent( true );
-        this.counter = 480;
+        this.counter = 40;
     },
 
     onResetEvent: function() {
@@ -168,7 +232,7 @@ var TitleScreen = me.ScreenObject.extend({
         }
 
         me.input.bindKey( me.input.KEY.ENTER, "enter", true );
-        me.audio.playTrack( "ld23-theme" );
+        //me.audio.playTrack( "ld23-theme" );
     },
 
     update: function() {
@@ -249,12 +313,12 @@ var GameOverScreen = me.ScreenObject.extend(
         {
             text[0] = "TEE HEE";
         }
-        else if ( me.game.kills < 100 )
+        else if ( me.game.kills < 200 )
         {
             text[0] = "HOW COULD YOU!?!";
             text[1] = "THEY JUST WANTED TO HUGS.";
         }
-        else if ( me.game.kills < 200 )
+        else if ( me.game.kills < 400 )
         {
             text[0] = "OH GOD...";
             text[1] = "THEY WERE SO YOUNG!";
