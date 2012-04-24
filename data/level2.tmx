@@ -104,7 +104,7 @@
     <property name="spritewidth" value="48"/>
    </properties>
   </object>
-  <object name="LevelChanger" x="337" y="283" width="202" height="181">
+  <object name="LevelChanger" x="6939" y="292" width="202" height="181">
    <properties>
     <property name="duration" value="250"/>
     <property name="fade" value="#000000"/>
