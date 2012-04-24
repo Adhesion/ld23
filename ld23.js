@@ -174,14 +174,14 @@ var RadmarsScreen = me.ScreenObject.extend({
         }
 
         me.input.bindKey( me.input.KEY.ENTER, "enter", true );
-        me.audio.playTrack( "ld23-theme" );
+        me.audio.playTrack( "radmarslogo" );
     },
 
     update: function() {
         if( me.input.isKeyPressed('enter')) {
             me.state.change(me.state.MENU);
         }
-        if ( this.counter < 200 )
+        if ( this.counter < 350 )
         {
             this.counter++;
         }else{
@@ -214,14 +214,15 @@ var RadmarsScreen = me.ScreenObject.extend({
 
     onDestroyEvent: function() {
         me.input.unbindKey(me.input.KEY.ENTER);
-       
+       me.audio.stopTrack();
     }
 });
 
 var TitleScreen = me.ScreenObject.extend({
     init: function() {
         this.parent( true );
-        this.counter = 40;
+        this.counter = 480;
+        this.entercount = 0;
     },
 
     onResetEvent: function() {
@@ -232,7 +233,7 @@ var TitleScreen = me.ScreenObject.extend({
         }
 
         me.input.bindKey( me.input.KEY.ENTER, "enter", true );
-        //me.audio.playTrack( "ld23-theme" );
+        me.audio.playTrack( "ld23-theme" );
     },
 
     update: function() {
@@ -243,6 +244,11 @@ var TitleScreen = me.ScreenObject.extend({
         {
             this.counter--;
         }
+        if ( this.entercount > 10 )
+        {
+            this.entercount = 0;
+        }
+        this.enterCount++;
         // have to force redraw :(
         me.game.repaint();
     },
@@ -250,7 +256,7 @@ var TitleScreen = me.ScreenObject.extend({
     draw: function(context) {
         context.drawImage( this.splash, 0, 0 );
         context.drawImage( this.title, 50, 290 + ( this.counter / 5.85 ) );
-        if ( this.counter == 0 )
+        if ( this.counter == 0 && this.entercount < 5 )
         {
             context.drawImage( this.cta, 200, 420 );
         }

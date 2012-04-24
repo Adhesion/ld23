@@ -71,4 +71,5 @@ var gameResources =
     { name: "ld23-mars", type: "audio", src: "data/", channels : 2 },
     { name: "ld23-air", type: "audio", src: "data/", channels : 2 },
     { name: "ld23-space", type: "audio", src: "data/", channels : 2 },
+    { name: "radmarslogo", type: "audio", src: "data/", channels : 2 },
 ];
