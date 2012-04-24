@@ -145,6 +145,10 @@ var Player = me.ObjectEntity.extend(
         else if ( this.lazerCooldown > 0 )
         {
             this.lazerCooldown--;
+            if ( this.lazerCooldown == 0 )
+            {
+                me.audio.play( "ready" );
+            }
         }
         
         if ( this.curWalkLeft != this.lastWalkLeft || me.input.isKeyPressed( "jump" ) )
@@ -184,7 +188,7 @@ var Player = me.ObjectEntity.extend(
         // die if no hp or fall off screen - note may cause issues with long jumps? bit of a hack
         if ( this.hp <= 0 || this.pos.y > me.game.viewport.bottom )
         {
-            this.die();
+            me.audio.play( "death", false, this.die() );
         }
         
         // set animation states

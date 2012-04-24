@@ -88,6 +88,7 @@ var Enemy = me.ObjectEntity.extend(
                 this.die();
                 me.game.kills++;
                 this.spawnParticle( this.pos.x, this.pos.y, "bloodsplat", 48, [ 0, 1, 2, 3, 4, 5, 6 ], 4 );
+                me.audio.play( "stompdeath" );
             }
             else
             {
@@ -107,6 +108,7 @@ var Enemy = me.ObjectEntity.extend(
             this.die();
             me.game.kills++;
             this.spawnParticle( this.pos.x, this.pos.y, "burned", 48, [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ], 4 );
+            me.audio.play( "lazerdeath" );
         }
     },
 
