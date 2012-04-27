@@ -135,12 +135,16 @@ var Player = me.ObjectEntity.extend(
         
         if ( me.input.isKeyPressed( "shoot" ) && this.lazerCooldown == 0 )
         {
-            this.curLazer = new playerParticle( this.pos.x, this.pos.y, "lazer", 384, [ 0, 1, 2, 3, 4 ], 5, this.curWalkLeft, "lazer" );
+            console.log( "level: ", me.levelDirector.getCurrentLevelId() );
+            var newLevel = "level" + (parseInt(me.state.current().getLevel()) + 1);
+            console.log( "newlevel: ", newLevel );
+            me.levelDirector.loadLevel( newLevel );
+            /*this.curLazer = new playerParticle( this.pos.x, this.pos.y, "lazer", 384, [ 0, 1, 2, 3, 4 ], 5, this.curWalkLeft, "lazer" );
             me.game.add( this.curLazer, 5 );
             me.game.sort();
             this.lazerCooldown = this.lazerMax;
             me.game.viewport.shake( 8, 15, me.game.viewport.AXIS.BOTH );
-            me.audio.play( "lazer" );
+            me.audio.play( "lazer" );*/
         }
         else if ( this.lazerCooldown > 0 )
         {
@@ -170,7 +174,7 @@ var Player = me.ObjectEntity.extend(
         // do damage only once every few frames
         if ( this.hpCounter == 0 )
         {
-            this.hit( this.attachedList.length*3 );
+            //this.hit( this.attachedList.length*3 );
             this.hpCounter = this.hpCounterMax;
             if ( this.attachedList.length > 0 )
             {

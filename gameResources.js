@@ -56,6 +56,11 @@ var gameResources =
     { name: "level7", type: "tmx", src: "data/level7.tmx" },
     { name: "level8", type: "tmx", src: "data/level8.tmx" },
     { name: "level9", type: "tmx", src: "data/level9.tmx" },
+    { name: "testlevel", type: "tmx", src: "data/testlevel.tmx" },
+    { name: "testlevel-nodudes", type: "tmx", src: "data/testlevel-nodudes.tmx" },
+    { name: "testlevel-nodudes-nofore", type: "tmx", src: "data/testlevel-nodudes-nofore.tmx" },
+    { name: "testlevel-lotsdudes", type: "tmx", src: "data/testlevel-lotsdudes.tmx" },
+    { name: "testlevel-big300150", type: "tmx", src: "data/testlevel-big300150.tmx" },
     
 	{ name: "djump", type: "audio", src: "data/", channels : 2 },
     { name: "grab", type: "audio", src: "data/", channels : 2 },
