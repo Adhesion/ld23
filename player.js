@@ -103,24 +103,8 @@ var Player = me.ObjectEntity.extend(
 		//so it dosnt regen while being attacked
     },
 
-    addTestObject: function()
-    {
-        var settings = {};
-        settings.image = "dude01";
-        settings.spritewidth = 48;
-
-        var test = new me.ObjectEntity( this.pos.x + ( Math.random() * 20 ), this.pos.y + ( Math.random() * 20 ), settings );
-        test.update = function() {};
-        test.collidable = false;
-        me.game.add( test, 5 );
-        me.game.sort();
-        //console.log( "add test object: " + test.pos.x + ", " + test.pos.y );
-    },
-
     update: function()
     {
-        //this.addTestObject();
-     	
         var attached = this.attachedList.length;
         if ( attached > 5 ) attatched = 5;
 
