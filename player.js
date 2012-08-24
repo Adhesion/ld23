@@ -103,6 +103,18 @@ var Player = me.ObjectEntity.extend(
 		//so it dosnt regen while being attacked
     },
 
+    // multiple collision fix: if lazer or flame trying to collide against us,
+    // don't do a full collision check since it might only hit us and never
+    // enemies
+    checkCollision: function( obj )
+    {
+        if ( obj.type == "flame" || obj.type == "lazer" )
+        {
+            return null;
+        }
+        return this.parent( obj );
+    },
+
     update: function()
     {
         var attached = this.attachedList.length;
@@ -156,15 +168,17 @@ var Player = me.ObjectEntity.extend(
         }
 		
         // regen when not being hit. 
-		if(this.regenCounter == 0){
-			if(this.hp < 100)this.hp++;
+		if ( this.regenCounter == 0 ) 
+        {
+			if ( this.hp < 100 ) 
+                this.hp++;
 			this.regenCounter = this.regenCounterMax;
 			me.game.HUD.setItemValue( "hp", this.hp );
-		}else{
-		 
-		  this.regenCounter--;
 		}
-		
+        else
+        {
+            this.regenCounter--;
+		}
 		
         // do damage only once every few frames
         if ( this.hpCounter == 0 )
@@ -177,7 +191,6 @@ var Player = me.ObjectEntity.extend(
 				this.regenCounter = this.regenCounterHitMax;
                 me.game.viewport.shake( this.attachedList.length * 2, 5, me.game.viewport.AXIS_BOTH );
             }
-			
         }
         else
         {
@@ -289,7 +302,7 @@ var playerParticle = me.ObjectEntity.extend(
         return true;
     },
     
-    // small hack to allow for multiple collision, effectively
+    // small hack to allow for multiple collision, effectively - see above
     // ignore collision with this as recipient - if not, player collision hits this and breaks out of loop before it gets to enemies
     checkCollision: function( obj )
     {
