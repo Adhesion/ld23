@@ -214,7 +214,7 @@ var RadmarsScreen = me.ScreenObject.extend({
 
     onDestroyEvent: function() {
         me.input.unbindKey(me.input.KEY.ENTER);
-       me.audio.stopTrack();
+        me.audio.stopTrack();
     }
 });
 
